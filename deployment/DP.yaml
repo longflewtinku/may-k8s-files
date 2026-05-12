@@ -3,6 +3,8 @@ kind: Deployment
 metadata: 
   name: mydpyellow
   namespace: dev 
+  annotations:
+    kubernetes.io/change-cause: "Deploy to yellowapp"
 spec: 
   minReadySeconds: 5
   replicas: 6
