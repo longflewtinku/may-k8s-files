@@ -1,0 +1,44 @@
+apiVersion: apps/v1 
+kind: StatefulSet 
+metadata: 
+  name: mydatabase
+  namespace: PROD
+spec: 
+  minReadySeconds: 5
+  replicas: 4
+  selector:
+    matchLabels: 
+      app: database
+  serviceName: mydatabase-svc
+  template:
+    metadata:
+      labels:
+        app: database
+    spec:
+      containers:
+        - name: my-database-container
+          image: mysql
+          ports:
+            - containerPort: 3306
+          env:
+            - name: MYSQL_ROOT_PASSWORD
+              value: rootroot
+            - name: MYSQL_DATABASE
+              value: studentdb
+            - name: MYSQL_USER
+              value: admin
+            - name: MYSQL_PASSWORD
+              value: admin@123 
+          volumeMounts:
+            - name: mysql-storage
+              mountPath: /var/lib/mysql
+                  
+  volumeClaimTemplates:
+      - metadata: 
+          name: mysql-storage   
+        spec: 
+          accessModes: 
+            - ReadWriteOnce 
+          resources:
+            requests: 
+              storage: 2Gi   
