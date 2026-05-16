@@ -1,0 +1,25 @@
+apiVersion: v1 
+kind: Pod 
+metadata: 
+  name: configmap-pod
+spec: 
+  containers:
+    - name: nginx-container
+      image: nginx 
+      env: 
+       - name: APP_ENV
+         valueFrom: 
+           configMapKeyRef: 
+             name: my-configmap
+             key: APP_ENV
+       - name: APP_PORT
+         valueFrom:
+           configMapKeyRef:
+            name: my-configmap
+            key: APP_PORT
+       - name: DOCKER_BUILDID
+         valueFrom:
+           configMapKeyRef:
+            key: DOCKER_BUILDID
+            name: my-configmap      
+
