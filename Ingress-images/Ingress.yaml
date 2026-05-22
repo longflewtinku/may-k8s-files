@@ -12,11 +12,15 @@ spec:
            backend: 
              service: 
                name: mysvcdp-zayshop
+               port:
+                number: 80
          - path: /catalog 
            pathType: Prefix
            backend:
             service:
               name: mysvcdp-catalog
-                    
+              port:
+                number: 80
+
                
                    
