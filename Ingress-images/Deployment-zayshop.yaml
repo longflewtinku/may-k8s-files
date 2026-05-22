@@ -1,0 +1,30 @@
+apiVersion: apps/v1
+kind: Deployment 
+metadata: 
+  name: mydpzayshop
+  namespace: prod
+  annotations:
+    kubernetes.io/change-cause: "Deploy to Zayshop"
+spec: 
+  minReadySeconds: 5
+  replicas: 6
+  selector:
+    matchLabels:
+      app: zayshop-app
+  strategy: 
+    type: RollingUpdate
+    rollingUpdate:
+      maxSurge: 25%
+      maxUnavailable: 25%  
+  template:
+    metadata:
+      name: myzayshopods
+      labels:
+        app: zayshop-app
+    spec:
+      containers:
+        - name: myzayshop-contianers 
+          image: 017379869709.dkr.ecr.ap-south-1.amazonaws.com/prod/images:zayshop 
+          ports:
+            - containerPort: 80
+          imagePullPolicy: Always   

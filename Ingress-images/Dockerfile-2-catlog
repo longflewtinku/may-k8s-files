@@ -1,0 +1,2 @@
+FROM nginx 
+ADD templatemo_556_catalog_z /usr/share/nginx/html
