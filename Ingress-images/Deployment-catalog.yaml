@@ -2,7 +2,6 @@ apiVersion: apps/v1
 kind: Deployment 
 metadata: 
   name: mydpcatalog
-  namespace: prod
   annotations:
     kubernetes.io/change-cause: "Deploy to catalog"
 spec: 
